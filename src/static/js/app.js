@@ -53,7 +53,7 @@ function TodoListCard() {
         <React.Fragment>
             <AddItemForm onNewItem={onNewItem} />
             {items.length === 0 && (
-                <p className="text-center">You have no todo items yet! add one above!</p>
+                <p className="text-center">No items yet! Add one above!</p>
             )}
             {items.map(item => (
                 <ItemDisplay
@@ -123,7 +123,6 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
             body: JSON.stringify({
                 name: item.name,
                 completed: !item.completed,
-                dueDate: item.dueDate, // Add due date
             }),
             headers: { 'Content-Type': 'application/json' },
         })
@@ -159,11 +158,8 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
                         />
                     </Button>
                 </Col>
-                <Col xs={9} className="name">
+                <Col xs={10} className="name">
                     {item.name}
-                </Col>
-                <Col xs={2} className="due-date">
-                    Due: {item.dueDate} {/* Display due date */}
                 </Col>
                 <Col xs={1} className="text-center remove">
                     <Button
@@ -179,6 +175,5 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
         </Container>
     );
 }
-
 
 ReactDOM.render(<App />, document.getElementById('root'));
